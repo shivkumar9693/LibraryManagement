@@ -1,0 +1,126 @@
+.home-container {
+    min-height: 100vh;
+    background: linear-gradient(120deg, #f6f9ff, #eef2ff);
+    cursor: url("/pen-cursor.png"), auto;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 10%;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero-text span {
+    color: #6366f1;
+}
+
+.hero-text p {
+    color: #555;
+    font-size: 18px;
+}
+
+.hero-buttons {
+    margin-top: 25px;
+}
+
+.hero-buttons button {
+    padding: 12px 24px;
+    border-radius: 25px;
+    border: none;
+    margin-right: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    background: #6366f1;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.hero-buttons .outline {
+    background: transparent;
+    border: 2px solid #6366f1;
+    color: #6366f1;
+}
+
+.hero-buttons button:hover {
+    transform: translateY(-3px);
+}
+
+/* FLOATING BOOKS */
+.hero-visual {
+    position: relative;
+}
+
+.floating-book {
+    font-size: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.delay {
+    animation-delay: 1s;
+}
+
+.delay2 {
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* FEATURES */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 60px 10%;
+}
+
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+/* CTA */
+.cta {
+    background: #6366f1;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.cta button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
