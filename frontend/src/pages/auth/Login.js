@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { login } from "../../api/auth";
-import "./Auth.css"; // we’ll reuse styles for login/signup
+import { useAuth } from "../../context/AuthContext";
+import { loginUser } from "../../api/auth";
+import "./Auth.css";
 
 const Login = () => {
     const navigate = useNavigate();
-    const { setAuthData } = useContext(AuthContext);
+    const { login } = useAuth();
 
     const [form, setForm] = useState({
         email: "",
@@ -26,38 +26,26 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await login(form);
+            const response = await loginUser(form.email, form.password);
 
             if (!response.success) {
-                setError(response.message);
+                setError(response.message || "Login failed");
                 setLoading(false);
                 return;
             }
 
-            // Save auth data in context + localStorage
-            setAuthData({
-                email: form.email,
-                password: form.password,
-                role: response.role,
-            });
-
-            localStorage.setItem(
-                "auth",
-                JSON.stringify({
-                    email: form.email,
-                    password: form.password,
-                    role: response.role,
-                })
-            );
+            // Save auth data in context using the login function
+            login(form.email, form.password, response.role, response.userId);
 
             // Redirect based on role
             if (response.role === "ADMIN") {
                 navigate("/admin");
             } else {
-                navigate("/user");
+                navigate("/dashboard");
             }
         } catch (err) {
             setError("Something went wrong. Please try again.");
+            console.error(err);
         } finally {
             setLoading(false);
         }

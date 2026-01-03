@@ -34,15 +34,15 @@ public class AuthService {
                 .orElse(null);
 
         if (user == null) {
-            return new LoginResponse(false, "Email not registered", null);
+            return new LoginResponse(false, "Email not registered", null, null);
         }
 
         // Compare hashed password
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return new LoginResponse(false, "Invalid password", null);
+            return new LoginResponse(false, "Invalid password", null, null);
         }
 
-        return new LoginResponse(true, "Login successful", user.getRole());
+        return new LoginResponse(true, "Login successful", user.getRole(), user.getId());
     }
 
 }

@@ -22,7 +22,7 @@ export const loginUser = async (email, password) => {
             email,
             password,
         });
-        return response.data; // { success, message, role }
+        return response.data; // { success, message, role, userId }
     } catch (error) {
         return {
             success: false,

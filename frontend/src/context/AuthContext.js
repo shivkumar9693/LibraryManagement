@@ -7,10 +7,10 @@ import React, { createContext, useContext, useEffect, useState } from "react";
  * - persists login on refresh
  */
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null); // { email, role }
+    const [user, setUser] = useState(null); // { email, role, id }
     const [authHeader, setAuthHeader] = useState(null);
 
     // Load auth from localStorage on refresh
@@ -27,11 +27,11 @@ export const AuthProvider = ({ children }) => {
     /**
      * Login using Basic Auth
      */
-    const login = (email, password, role) => {
+    const login = (email, password, role, userId) => {
         const token = btoa(`${email}:${password}`); // Basic Auth token
         const header = `Basic ${token}`;
 
-        const userData = { email, role };
+        const userData = { email, role, id: userId };
 
         setUser(userData);
         setAuthHeader(header);
@@ -79,3 +79,4 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
     return useContext(AuthContext);
 };
+ 
