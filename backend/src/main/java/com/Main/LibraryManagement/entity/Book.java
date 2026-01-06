@@ -15,8 +15,11 @@ public class Book {
     private String title;
 
     private String description;
+//
+//    private String image;
+@Column(columnDefinition = "TEXT")
+private String image;
 
-    private String image;
 
     // Each book belongs to an admin
     @ManyToOne
